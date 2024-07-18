@@ -1,38 +1,31 @@
-import fs from 'fs'
-
 let timeout = 60000
 let poin = 500
-
-let handler = async (m, { conn, usedPrefix }) => {
-    conn.tekateki = conn.tekateki ? conn.tekateki : {}
+let handler = async (m, { conn, command, usedPrefix }) => {
+    conn.tebakbendera = conn.tebakbendera ? conn.tebakbendera : {}
     let id = m.chat
-    if (id in conn.tekateki) {
-        conn.reply(m.chat, '❐┃لم يتم الاجابة علي السؤال بعد┃❌ ❯', conn.tekateki[id][0])
+    if (id in conn.tebakbendera) {
+        conn.reply(m.chat, '❐┃لم يتم الاجابة علي السؤال بعد┃❌ ❯', conn.tebakbendera[id][0])
         throw false
     }
-    let tekateki = JSON.parse(fs.readFileSync(`./src/game/acertijo.json`))
-    let json = tekateki[Math.floor(Math.random() * tekateki.length)]
-    let _clue = json.response
-    let clue = _clue.replace(/[A-Za-z]/g, '_')
-    let caption = `
-ⷮ *${json.question}*
-
-*❐↞┇الـوقـت⏳↞ ${(timeout / 1000).toFixed(2)}┇*
-*❐↞┇الـجـائـزة💰↞ ${poin} نقاط┇*
-*★فكر يمحنك الانمي(صنع بحب من قبل يوهان★*
-`.trim()
-    conn.tekateki[id] = [
-       await conn.reply(m.chat, caption, m),
+    let src = await (await fetch('https://gist.githubusercontent.com/kdjrjidj/038d51b3b9f0e816b7057dd0a3baf0f8/raw/efe902ea0ce1ede8ad65ae01d4f8407ea609615f/jshrjdii.js')).json()
+  let json = src[Math.floor(Math.random() * src.length)]
+    let caption = `*${command.toUpperCase()}*
+  ❐↞┇الـوقـت⏳↞ *${(timeout / 1000).toFixed(2)} ┇
+  *استخدم .انسحب للأنسحاب*
+  ❐↞┇الـجـائـزة💰↞ ${poin} نقاط┇
+『⛩️┃🏮NANO🏮┃⛩️』
+     `.trim()
+    conn.tebakbendera[id] = [
+        await conn.sendFile(m.chat, json.img, '', caption, m),
         json, poin,
-        setTimeout(async () => {
-            if (conn.tekateki[id]) await conn.reply(m.chat, `*❮ ⌛┇انتهي الوقت┇⌛❯*\n *❐↞┇الاجـابـة✅↞ ${json.response}┇*`, conn.tekateki[id][0])
-            delete conn.tekateki[id]
+        setTimeout(() => {
+            if (conn.tebakbendera[id]) conn.reply(m.chat, `❮ ⌛┇انتهي الوقت┇⌛❯\n❐↞┇الاجـابـة✅↞ احلم اجيبلك الاجابه*┇`, conn.tebakbendera[id][0])
+            delete conn.tebakbendera[id]
         }, timeout)
     ]
 }
-
-handler.help = ['acertijo']
+handler.help = ['guessflag']
 handler.tags = ['game']
-handler.command = /^(سؤال_انمي|سؤال)$/i
+handler.command = /^سؤال/i
 
 export default handler
