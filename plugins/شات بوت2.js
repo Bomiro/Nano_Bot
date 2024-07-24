@@ -114,7 +114,7 @@ if (/^كسمك$/i.test(m.text) ) { //sem prefixo
 
  } 
 
- if (/^السلام ورحمة الله وبركاته$/i.test(m.text) ) { //sem prefixo 
+ if (/^السلام عليكم|السلام ورحمة الله وبركاته$/i.test(m.text) ) { //sem prefixo 
  conn.reply(m.chat, `وعليكم السلام ورحمة الله وبركاته `, m) //wm, null, [['Menu', '#menu']], m) botones :V 
 
  } 
