@@ -1,4 +1,4 @@
-const isToxic = /^(زب|سكس|طيز|كس|خول|عرص|متناك|xnxx|xxx|عرص|كسمك|مخولن|خولنه|يلعن|fuk|متناك|متناكه|خرا|طيز|كوس|نيك|هنيكك|طيز)$/i;
+const isToxic = /^(زب|سكس|طيز|كس|خول|عرص|متناك|xnxx|xxx|عرص|كسمك|مخولن|خولنه|يلعن|fuk|متناك|متناكه|خرا|طيز|كوس|نيك|هنيكك|طيز|حب|بحب|كراش)$/i;
 
 import axios from "axios"
 import fetch from "node-fetch"
@@ -29,7 +29,8 @@ export async function before(m, { isAdmin, isBotAdmin }) {
             "خخخ م تحترم نفسك!",
             "عيب الكلام دا ي شباب والله!",
             "فين الادمن يطردوه او يعطوه انذار!",
-            "يخول امتا هتكبر."
+            "يخول امتا هتكبر.",
+            "احترم نفسك ياعم انت في جروب محترم"
         ];
 
         const toxicityPercentage = Number(analysisResult.toxicity * 100).toFixed(2)
