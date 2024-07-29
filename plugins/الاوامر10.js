@@ -106,7 +106,7 @@ conn.sendMessage(m.chat, buttonMessage, { quoted: m })
 } catch {
 conn.reply(m.chat, '[❗INFO❗] تحتوي القائمة على خطأ ولا يمكن إرسالها، يرجى الإبلاغ عنها إلى مالك الروبوت', m)
 }}
-handler.command = /^(9)$/i
+handler.command = /^(10)$/i
 handler.exp = 50
 handler.fail = null
 export default handler
