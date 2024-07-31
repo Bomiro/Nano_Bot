@@ -1,43 +1,42 @@
-import { areJidsSameUser } from '@whiskeysockets/baileys'
-
 let handler = async (m, { conn, args, participants }) => {
-  let users = Object.entries(global.db.data.users).map(([key, value]) => {
-    return {...value, jid: key}
-  })
-  let sortedExp = users.map(toNumber('exp')).sort(sort('exp'))
-  let sortedLim = users.map(toNumber('diamond')).sort(sort('diamond'))
-  let sortedLevel = users.map(toNumber('level')).sort(sort('level'))
-  let usersExp = sortedExp.map(enumGetKey)
-  let usersLim = sortedLim.map(enumGetKey)
-  let usersLevel = sortedLevel.map(enumGetKey)
-  let len = args[0] && args[0].length > 0 ? Math.min(50, Math.max(parseInt(args[0]), 5)) : Math.min(5, sortedExp.length)
-  let text = `
-       ≡ *المتصدرين*
+let users = Object.entries(global.db.data.users).map(([key, value]) => {
+return {...value, jid: key}})
+let sortedExp = users.map(toNumber('exp')).sort(sort('exp'))
+let sortedLim = users.map(toNumber('limit')).sort(sort('limit'))
+let sortedLevel = users.map(toNumber('level')).sort(sort('level'))
+let usersExp = sortedExp.map(enumGetKey)
+let usersLim = sortedLim.map(enumGetKey)
+let usersLevel = sortedLevel.map(enumGetKey)
+let len = args[0] && args[0].length > 0 ? Math.min(100, Math.max(parseInt(args[0]), 5)) : Math.min(5, sortedExp.length)
+let text = `
+*< جدول الترتيب />*
 
-▢ *TOP ${len} XP* 🧬
+▢ *توب ${len} XP* •
 انت : *${usersExp.indexOf(m.sender) + 1}* ل *${usersExp.length}*
 
-${sortedExp.slice(0, len).map(({ jid, exp }, i) => `*${i + 1}.* ${participants.some(p => areJidsSameUser(jid, p.id)) ? `(${conn.getName(jid)}) wa.me/` : '@'}${jid.split`@`[0]} ➭ _*XP ${exp}*_`).join`\n`}
+${sortedExp.slice(0, len).map(({ jid, exp }, i) => `${i + 1}. ${participants.some(p => jid === p.jid) ? `(${conn.getName(jid)}) wa.me/` : '@'}${jid.split`@`[0]} *${exp}  XP*`).join`\n`}
 
-▢ *TOP ${len} العدد💎* 
+▢ *افضل ${len} الماس 💎* •
 انت : *${usersLim.indexOf(m.sender) + 1}* ل *${usersLim.length}*
 
-${sortedLim.slice(0, len).map(({ jid, diamond }, i) => `*${i + 1}.* ${participants.some(p => areJidsSameUser(jid, p.id)) ? `(${conn.getName(jid)}) wa.me/` : '@'}${jid.split`@`[0]} ➭ _*
-الماس ${diamond}*_`).join`\n`}
+${sortedLim.slice(0, len).map(({ jid, limit }, i) => `${i + 1}. ${participants.some(p => jid === p.jid) ? `(${conn.getName(jid)}) wa.me/` : '@'}${jid.split`@`[0]} *${limit} الماس*`).join`\n`}
 
-▢ *TOP ${len} مستوي* ⬆️
+▢ *توب ${len} مستوى* • 
 انت : *${usersLevel.indexOf(m.sender) + 1}* ل *${usersLevel.length}*
 
-${sortedLevel.slice(0, len).map(({ jid, level }, i) => `*${i + 1}.* ${participants.some(p => areJidsSameUser(jid, p.id)) ? `(${conn.getName(jid)}) wa.me/` : '@'}${jid.split`@`[0]} ➭ _*مستوي ${level}*_`).join`\n`}
-`.trim()
-  conn.reply(m.chat, text, m, {
-    mentions: [...usersExp.slice(0, len), ...usersLim.slice(0, len), ...usersLevel.slice(0, len)].filter(v => !participants.some(p => areJidsSameUser(v, p.id) )) 
-})
+${sortedLevel.slice(0, len).map(({ jid, level }, i) => `${i + 1}. ${participants.some(p => jid === p.jid) ? `(${conn.getName(jid)}) wa.me/` : '@'}${jid.split`@`[0]} *مستوى ${level}*`).join`\n`}
 
+𝑩𝒚 : Boudy⚡ `.trim()
+  m.reply(text, null, { mentions: conn.parseMention(text) })
 }
-handler.help = ['leaderboard']
-handler.tags = ['econ']
-handler.command = ['ترتيب', 'top'] 
+handler.help = ['top']
+handler.tags = ['xp']
+handler.command = ['ترتيب', 'lb'] 
+
+
+
+handler.fail = null
+handler.exp = 0
 
 export default handler
 
@@ -55,4 +54,4 @@ function toNumber(property, _default = 0) {
 
 function enumGetKey(a) {
   return a.jid
-}
+         }
