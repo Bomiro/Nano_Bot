@@ -36,7 +36,7 @@ export async function handler(chatUpdate) {
     return;
   }
   if (global.db.data == null) await global.loadDatabase();
-  /* Creditos a Otosaka (https://wa.me/51993966345) */
+  /* Creditos a Otosaka (https://wa.me/) */
 
   if (global.chatgpt.data === null) await global.loadChatgptDB();
 
@@ -1654,6 +1654,9 @@ export async function participantsUpdate({ id, participants, action }) {
               return;
             }
             await m.conn.sendFile(id, apii.data, 'pp.jpg', text, null, false, { mentions: [user] });
+            if (action === 'add') {
+            await m.conn.sendMessage(id, { audio: { url: "./slm.mp3" }, mimetype: 'audio/mp4' })
+            }
           }
         }
       }
