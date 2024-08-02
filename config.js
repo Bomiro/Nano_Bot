@@ -28,16 +28,16 @@ global.titulowm2 = `The Nano - Bot`
 global.igfg = 'The Nano - Bot';
 global.wait = '*[ ⏳ ] جار تلبيت طلبك...*';
 
-global.imagen1 = fs.readFileSync('./Menu2.jpg');
-global.imagen2 = fs.readFileSync('./src/nuevobot.jpg');
-global.imagen3 = fs.readFileSync('./src/Pre Bot Publi.png');
+global.imagen1 = fs.readFileSync('./Menu.png');
+global.imagen2 = fs.readFileSync('./Menu.png');
+global.imagen3 = fs.readFileSync('./Menu.png');
 global.imagen4 = fs.readFileSync('./Menu.png');
-global.imagen5 = fs.readFileSync('./src/+18.jpg');
+global.imagen5 = fs.readFileSync('./Menu.png');
 global.imagen6 = fs.readFileSync('./Menu3.png');
-global.imagen7 = fs.readFileSync('./src/menu_pt.png');
-global.imagen8 = fs.readFileSync('./src/menu_fr.png')
-global.imagen9 = fs.readFileSync('./src/menu_en.png')
-global.imagen10 = fs.readFileSync('./src/menu_ru.png')
+global.imagen7 = fs.readFileSync('./Menu.png');
+global.imagen8 = fs.readFileSync('./Menu.png')
+global.imagen9 = fs.readFileSync('./Menu.png')
+global.imagen10 = fs.readFileSync('./Menu.png')
 
 global.mods = [];
 
