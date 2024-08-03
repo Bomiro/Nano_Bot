@@ -983,7 +983,7 @@ export async function handler(chatUpdate) {
         if (!('posicao' in gameglx.perfil.casa.colonia)) gameglx.perfil.casa.colonia.posicao = {};
         if (!('x' in gameglx.perfil.casa.colonia.posicao)) gameglx.perfil.casa.colonia.posicao.x = 0;
         if (!('y' in gameglx.perfil.casa.colonia.posicao)) gameglx.perfil.casa.colonia.posicao.y = 0;
-        
+
         //Posição  em viagens se necessario
         if (!('posicao' in gameglx.perfil.localizacao)) gameglx.perfil.localizacao.posicao = {};
         if (!('x' in gameglx.perfil.localizacao.posicao)) gameglx.perfil.localizacao.posicao.x = 0;
