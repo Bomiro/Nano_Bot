@@ -75,11 +75,6 @@ handler.all = async function (m) {
     conn.sendPresenceUpdate(    'recording'    , m.chat);
     conn.sendMessage(m.chat, { audio: { url: vn }, ptt: true, mimetype:     'audio/mpeg'    , fileName: `shawaza_zizo_2024.opp` }, { quoted: m });
   }
-  if (/^نا هنام|هنام$/i.test(m.text)) {
-    let vn =     'https://qu.ax/OJjK'    ;
-    conn.sendPresenceUpdate(    'recording'    , m.chat);
-    conn.sendMessage(m.chat, { audio: { url: vn }, ptt: true, mimetype:     'audio/mpeg'    , fileName: `shawaza_zizo_2024.opp` }, { quoted: m });
-  }
   if (/^ربنا يسمحك$/i.test(m.text)) {
     let vn =     'https://qu.ax/cZJu'    ;
     conn.sendPresenceUpdate(    'recording'    , m.chat);
