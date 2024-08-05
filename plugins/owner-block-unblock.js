@@ -11,7 +11,7 @@ const handler = async (m, {text, conn, usedPrefix, command}) => {
         });
       } else conn.reply(m.chat, why, m, {mentions: [m.sender]});
       break;
-    case 'رفع-الحظر': case 'unblock':
+    case 'فك-حظر': case 'unblock':
       if (who) {
         await conn.updateBlockStatus(who, 'unblock').then(() => {
           res.push(who);
@@ -21,6 +21,6 @@ const handler = async (m, {text, conn, usedPrefix, command}) => {
   }
   if (res[0]) conn.reply(m.chat, `*[❗] تم استخدام الأمر بنجاح ${command} للمستخدم/ه ${res ? `${res.map((v) => '@' + v.split('@')[0])}` : ''}*`, m, {mentions: res});
 };
-handler.command = /^(فك-حظر|رفع-الحظر)$/i;
+handler.command = /^(فك-حظر|رفع-الحظر|حظر)$/i;
 handler.rowner = true;
 export default handler;
